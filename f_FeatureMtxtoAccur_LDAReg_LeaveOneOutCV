@@ -1,0 +1,25 @@
+function [LOOCV_Accuracy] = f_FeatureMtxtoAccur_LDAReg_LeaveOneOutCV ...
+    (featureMatrix,labels,gamma)
+%This function performs leave-one-out cross validation on the input
+%dataset and returns the accuracy using regularized LDA. 
+%Inputs:
+%   featureMatrix: a M-by-N matrix, where M is the number of samples and N 
+%   is the number of features.
+%   labels: a M-by-1 vector, with the labels of the M samples.
+%   gamma: the regularization parameter for LDA. It can be between 0 and 1
+accur_CV=zeros(1 ,length(labels)); % accuracy of each fold. In this case, 
+% each fold consists of only one sample.
+for i= 1:length(labels)  % looping through all the samples (folds)
+    train=true(length(labels),1);
+    train(i)=false; % setting labels for the training set
+    test=~train; % setting labels for the test set
+    class_LDA = fitcdiscr(featureMatrix(train,:),labels(train,:), ...
+        'DiscrimType','linear','Gamma',gamma);
+    predicted_labels= predict(class_LDA,featureMatrix(test,:));
+    accur_CV(1,i) =sum(predicted_labels == labels(test,:))/...
+        (length(predicted_labels));
+end
+LOOCV_Accuracy=mean(accur_CV); %the LOOCV accuracy is the mean accuracy of
+% all the folds.
+
+
