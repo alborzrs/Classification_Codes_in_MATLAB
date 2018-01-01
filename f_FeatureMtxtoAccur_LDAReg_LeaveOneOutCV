@@ -1,6 +1,6 @@
 function [LOOCV_Accuracy] = f_FeatureMtxtoAccur_LDAReg_LeaveOneOutCV ...
     (featureMatrix,labels,gamma)
-%This function performs leave-one-out cross validation on the input
+%This function performs a leave-one-out cross validation on the input
 %dataset and returns the accuracy using regularized LDA. 
 %Inputs:
 %   featureMatrix: a M-by-N matrix, where M is the number of samples and N 
