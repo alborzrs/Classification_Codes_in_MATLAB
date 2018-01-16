@@ -1,5 +1,5 @@
 # Classification_Codes_in_MATLAB
-This library contains cross validation and test set classification codes written in MATLAB. 
+This library contains a number of cross validation and test set classification codes written in MATLAB. 
 
 --> f_FeatureMtxtoAccur_LDAReg_KfoldCV 
 This function performs a k-fold cross validation on the input dataset and returns the accuracy using regularized LDA. 
